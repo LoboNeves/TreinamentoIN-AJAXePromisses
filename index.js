@@ -30,12 +30,19 @@ function ObterMsg(){
             let card = document.createElement("card");
             let h1 = document.createElement("h1");
             let p =  document.createElement("p");
+            let btn = document.createElement("button");
             h1.innerHTML = response[i].name;
             p.innerHTML = response[i].message;
+            btn.innerHTML = "DELETAR";
             card.appendChild(h1);
             card.appendChild(p);
+            card.appendChild(btn);
             card.id = response[i].id;
             Pessoas.appendChild(card);
+
+            btn.addEventListener("click", function(){
+                fetch("https://treinamentoajax.herokuapp.com/messages" + "/" + card.id, {method:"DELETE"}).then(response => {ObterMsg()})
+            })
         }
     })
 }
@@ -52,11 +59,19 @@ function ObterMsgespecífica(){
                 let card = document.createElement("card");
                 let h1 = document.createElement("h1");
                 let p =  document.createElement("p");
+                let btn = document.createElement("button");
                 h1.innerHTML = response[i].name;
                 p.innerHTML = response[i].message;
+                btn.innerHTML = "DELETAR";
                 card.appendChild(h1);
                 card.appendChild(p);
+                card.appendChild(btn);
+                card.id = response[i].id;
                 Pessoas.appendChild(card);
+
+                btn.addEventListener("click", function(){
+                    fetch("https://treinamentoajax.herokuapp.com/messages" + "/" + card.id, {method:"DELETE"}).then(response => {ObterMsg()})
+                })
             }
         }
     })
